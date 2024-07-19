@@ -1,0 +1,20 @@
+1 Crear las entidades de dominio con sus propiedades navegacionales
+2 Crear el ApplicationDbContext qe hereda de DbContext en infraestructure. Añadir el contenido ahi.
+3 Añade tu cadena de conexion al appsettings.
+4 Añade a tu dependency inyection de infraestructure el Microsoft.EntityFrameworkCore.SqlServer y:
+	services.AddDbContext<ApplicationDbContext>(options => 
+    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+5 Crea el IRepository en Domain/Interfaces
+6 Crea el repository en Infraestructure/Repositories
+7 Añade la dependencia de los repository en el DependencyInjection de Infraestructure
+8 Crea los configurations de fluentapi para tus entidades. Modifica el OnModelCreating del dbcontext para añadir modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+9 ten instalado Microsoft.EntityFrameworkCore.Tools
+10 Microsoft.EntityFrameworkCore.Design
+11 ejecutar dotnet tool install --global dotnet-ef o este para actualizar dotnet tool install --global dotnet-ef
+12  ejecuta la migracion asi dotnet ef migrations add InitialCreate --project Infraestructure --startup-project APITEST2024
+13 errores: https://stackoverflow.com/questions/52536588/your-startup-project-doesnt-reference-microsoft-entityframeworkcore-design
+14 Migracion creada. (ME ESTABA DANDO ERROR UNA DEPENDENCIA DE AUTOMAPPER Y PETABA LA MIGRACION, COMPRUEBA QUE LA API LEVANTA BIEN)
+
+15 UPDATE --> dotnet ef database update InitialCreate --project Infraestructure --startup-project APITEST2024 ????????????
+	
+
